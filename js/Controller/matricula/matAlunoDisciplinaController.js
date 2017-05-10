@@ -68,18 +68,32 @@ angular.module("siscadifapp").controller("matAlunoDisciplinaController",
         });
     };
 //-----------------------------------------------------------------------------------//
-    $scope.alunosSemDisc = function (idSem,idDisc) {
+    $scope.alunosSemDisc = function (idCur,idSem,idDisc) {
        if(idSem!=null){
+            $scope.listarAlunosPorCurso(idCur)
         var sucesso = function (dados) {
             $scope.listaAluMatSemestre = dados.data;
+            atualizarListadeAlunos();
         };
 
         var erro = function (err) {
-            alert("Erro linha "+err)
+            alert("Erro função alunosSemDisc (linha 80) "+err)
         };
+
         matriculaAPIService.listaMatSemestreDisciplina(idSem,idDisc).then(sucesso,erro)
+
        }
     };
+//-----------------------------------------------------------------------------------//
+    var atualizarListadeAlunos = function () {
+        for (var i = 0; i < $scope.listaAluMatSemestre.length; i++){
+            for (var j = 0; j < $scope.listaDeAlunos.length; j++){
+                if($scope.listaDeAlunos[j].id == $scope.listaAluMatSemestre[i].alunoid){
+                    $scope.listaDeAlunos.splice(j,1);
+                }
+            }
+        }
+    }
 //-----------------------------------------------------------------------------------//
         $scope.listarDisciplinasSelect = function (id) {
             if(id){
@@ -87,9 +101,10 @@ angular.module("siscadifapp").controller("matAlunoDisciplinaController",
                     $scope.listaDeDisciplinasSelect = dados.data;
                 };
                 var erro2 = function (err) {
-                    alert("Erro linha 90"+err)
+                    alert("Erro função listarDisciplinasSelect (linha 104)"+err)
                 };
                 disciplinaAPIService.listarDisciplinasPorCurso(id).then(sucesso2,erro2);
+                listarSemestres();
             }else{
                 $scope.listaDeDisciplinasSelect=[];
                 $scope.listaDeDisciplinasSelect=[];
@@ -102,16 +117,17 @@ angular.module("siscadifapp").controller("matAlunoDisciplinaController",
         // O ARRAY QUE VEM DA FUNCAO LISTARALUNOSPORCURSO(LINHA100) DO SERVICE PASSANDO UM ID DO CURSO
         $scope.listarAlunosPorCurso = function (id) {
             if(id){
+                alert(id)
                 var sucesso = function (dados) {
                     $scope.listaDeAlunos = dados.data;
                 };
                 var erro = function (err) {
-                    alert("Erro por listaAlunosPorCurso"+err)
+                    alert("Erro função listaAlunosPorCurso (linha 123)"+err)
                 };
                 alunoAPIService.listarAlunosPorCurso(id).then(sucesso,erro);
 
                 listarDisciplinasPorCurso(id);
-                listarSemestres();
+
             }else{
                 $scope.listaDeAlunos = [];
             }
@@ -152,7 +168,7 @@ angular.module("siscadifapp").controller("matAlunoDisciplinaController",
         };
 
         var erro = function (err) {
-            alert("Erro listaCursosSelect"+err)
+            alert("Erro função listaCursosSelect (linha 169)"+err)
         };
         cursoAPIService.listarCursosParaSelect().then(sucesso,erro)
     };
@@ -162,7 +178,7 @@ angular.module("siscadifapp").controller("matAlunoDisciplinaController",
             $scope.listaDeDisciplinasSelect = dados.data;
         };
         var erro2 = function (err) {
-            alert("Erro 2"+err)
+            alert("Erro função listarDisciplinasPorCurso (linha 179)"+err)
         };
         disciplinaAPIService.listarDisciplinasPorCurso(id).then(sucesso2,erro2);
     }
@@ -179,7 +195,6 @@ angular.module("siscadifapp").controller("matAlunoDisciplinaController",
         matriculaAPIService.listarSemestres().then(sucesso,erro);
     };
 //-----------------------------------------------------------------------------------//
-
     listaCursosSelect();
 
 

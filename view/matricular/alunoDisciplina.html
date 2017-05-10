@@ -92,7 +92,7 @@
     <div class="row">
         <div class="col-md-12">
             <select class="form-control" ng-disabled="!selectedDisciplina"
-                    ng-model="selectedSemestre" ng-change="alunosSemDisc(selectedSemestre,selectedDisciplina)">
+                    ng-model="selectedSemestre" ng-change="alunosSemDisc(selectedCurso,selectedSemestre,selectedDisciplina)">
                 <option value="">Selecione Semestre</option>
                 <option ng-repeat="sem in listaDeSemestre" value="{{sem.id}}">{{sem.descricao}}</option>
             </select>
