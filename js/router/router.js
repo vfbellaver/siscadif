@@ -36,4 +36,9 @@ angular.module("siscadifapp").config(["$routeProvider", function ($routeProvider
         controller:"alunoController"
     });
 
+    $routeProvider.when("/matriculaAlunoDisciplina",{
+        templateUrl:"view/matricular/alunoDisciplina.html",
+        controller: "matAlunoDisciplinaController"
+    });
+
 }]);

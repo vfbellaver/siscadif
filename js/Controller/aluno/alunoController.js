@@ -4,7 +4,7 @@
 
 angular.module("siscadifapp").controller("alunoController",function ($scope, alunoAPIService, cursoAPIService,$location) {
     //VARIAVEIS SCOPE
-    $scope.listaDeAlunos=[];
+
     $scope.listaDeCursos=[];
     $scope.listaDeAlunos={};
     $scope.listaDeCursosSelect={};

@@ -16,6 +16,12 @@ angular.module("siscadifapp").factory("disciplinaAPIService",function ($http) {
                 url:"http://siscadcpwiv.herokuapp.com/disciplina/list/1/5",
             });
         };
+    var _listarTodasDisciplinas = function () {
+        return $http({
+            method: "GET",
+            url:"http://siscadcpwiv.herokuapp.com/disciplina/list/1/500",
+        });
+    };
         var _listarDisciplinasPorCurso = function (id) {
             return $http({
                 method: "GET",
@@ -34,6 +40,7 @@ angular.module("siscadifapp").factory("disciplinaAPIService",function ($http) {
             listarDisciplinas: _listarDisciplinas,
             salvarDisciplina: _salvarDisciplina,
             listarDisciplinasPorCurso: _listarDisciplinasPorCurso,
-            listarDisciplinasPorPagina: _listarDisciplinasPorPagina
+            listarDisciplinasPorPagina: _listarDisciplinasPorPagina,
+            listarTodasDisciplinas: _listarTodasDisciplinas
         }
 });

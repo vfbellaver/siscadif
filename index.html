@@ -16,15 +16,20 @@
             <script src="js/service/cursoAPIService.js"></script>
             <script src="js/service/alunoAPIService.js"></script>
             <script src="js/service/disciplinaAPIService.js"></script>
-            <script src="js/Controller/cursoController.js"></script>
-            <script src="js/Controller/alunoController.js"></script>
-            <script src="js/Controller/disciplinaController.js"></script>
+            <script src="js/Controller/curso/cursoController.js"></script>
+            <script src="js/Controller/aluno/alunoController.js"></script>
+            <script src="js/Controller/disciplina/disciplinaController.js"></script>
+            <script src="js/Controller/matricula/matAlunoDisciplinaController.js"></script>
+            <script src="js/service/matriculaAPIService.js"></script>
 
 </head>
 <body class="container-fluid ">
 <div ng-include="'view/cabecalho.html'" ></div>
-    <div class="container-fluid">
+    <div class="container-fluid" >
         <div ng-view="view"></div>
     </div>
 </body>
+<div class="panel panel-success text-center">
+    <div class="bg-success">Sistema Acadêmico IFMS <br>Desenvolvido por: vfbellaver</div>
+</div>
 </html>

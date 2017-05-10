@@ -7,7 +7,7 @@ angular.module("siscadifapp").factory("alunoAPIService",function ($http) {
     var _listarAlunos = function () {
             return $http({
                 method: "GET",
-                url:"http://siscadcpwiv.herokuapp.com/aluno/list/1/5",
+                url:"http://siscadcpwiv.herokuapp.com/aluno/list/1/8",
             });
         };
 
@@ -29,7 +29,7 @@ angular.module("siscadifapp").factory("alunoAPIService",function ($http) {
     var _listarAlunosPorPagina = function (id) {
         return $http({
             method: "GET",
-            url:"http://siscadcpwiv.herokuapp.com/aluno/list/"+id+"/5",
+            url:"http://siscadcpwiv.herokuapp.com/aluno/list/"+id+"/8",
         });
     };
         return{
